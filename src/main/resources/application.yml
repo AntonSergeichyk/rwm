@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/rw_management
+    username: postgres
+    password: pass
+
+  jpa:
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
