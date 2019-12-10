@@ -5,6 +5,7 @@ import com.example.inhouse.rwm.demo.domein.customer.Customer;
 import com.example.inhouse.rwm.demo.domein.dictionary.order.PassengerType;
 import com.example.inhouse.rwm.demo.domein.dictionary.order.Rate;
 import com.example.inhouse.rwm.demo.domein.ticket.Ticket;
+import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

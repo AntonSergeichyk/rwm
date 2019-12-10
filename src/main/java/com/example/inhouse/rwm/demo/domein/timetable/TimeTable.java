@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -28,6 +30,10 @@ public class TimeTable extends BaseEntity {
     @JoinColumn(name = "train_id")
     private Train train;
 
-    @OneToMany(mappedBy = "timeTable")
-    private Set<Station> stations;
+    @ManyToOne
+    @JoinColumn(name = "station_id")
+    private Station station;
+
+    @Column(name = "arrival_time")
+    private LocalDateTime arrivalTime;
 }

@@ -9,10 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,11 +22,4 @@ public class Station extends BaseEntity {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "arrival_time")
-    private LocalDateTime arrivalTime;
-
-    @ManyToOne
-    @JoinColumn(name = "timetable_id")
-    private TimeTable timeTable;
 }
