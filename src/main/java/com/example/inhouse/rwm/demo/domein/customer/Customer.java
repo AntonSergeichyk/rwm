@@ -2,18 +2,11 @@ package com.example.inhouse.rwm.demo.domein.customer;
 
 import com.example.inhouse.rwm.demo.domein.BaseEntity;
 import com.example.inhouse.rwm.demo.domein.dictionary.common.Gender;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 import static javax.persistence.EnumType.STRING;
@@ -47,8 +40,10 @@ public class Customer extends BaseEntity {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
+    @ElementCollection
+    @CollectionTable(name = "customer_phone_number", schema = "rwm_storage", joinColumns = {@JoinColumn(name = "customer_id")})
     @Column(name = "phone_number")
-    private String phoneNumbers;
+    private Set<String> phoneNumbers;
 
     @OneToOne(mappedBy = "customer", fetch = LAZY)
     private CustomerAdvancedDetails customerAdvancedDetails;
