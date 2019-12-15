@@ -3,7 +3,7 @@ CREATE SCHEMA rwm_storage;
 CREATE TABLE rwm_storage.customer
 (
     id           BIGSERIAL PRIMARY KEY,
-    changed_at   TIMESTAMP WITHOUT TIME ZONE NULL NULL,
+    changed_at   TIMESTAMP WITHOUT TIME ZONE NULL NULL DEFAULT now(),
     changed_by   BIGINT                      NULL,
     created_at   TIMESTAMP WITHOUT TIME ZONE NULL NULL,
     created_by   BIGINT                      NULL,
@@ -11,7 +11,7 @@ CREATE TABLE rwm_storage.customer
     email        VARCHAR(255)                NOT NULL,
     first_name   VARCHAR(255)                NOT NULL,
     gender       VARCHAR(255)                NOT NULL,
-    identity     uuid                        NOT NULL,
+    identity     uuid                        NOT NULL DEFAULT uuid_generate_v4(),
     last_name    VARCHAR(255)                NOT NULL,
     phone_number VARCHAR(255)                NULL
 );
