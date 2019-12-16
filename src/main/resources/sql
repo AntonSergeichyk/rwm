@@ -1,0 +1,52 @@
+SELECT sab_table.train_number,
+       count(sab_table.train_number),
+       sab_table.train_name,
+       sab_table.arrival_time,
+       sab_table.station_name
+FROM (SELECT t.number AS train_number, t.name AS train_name, tt.arrival_time AS arrival_time, s.name AS station_name
+      FROM rwm_storage.timetable tt
+               INNER JOIN rwm_storage.train t ON tt.train_id = t.id
+               INNER JOIN rwm_storage.station s ON tt.station_id = s.id
+      WHERE s.id in (30, 21)) sab_table
+GROUP BY sab_table.train_number, sab_table.train_name, sab_table.arrival_time, sab_table.station_name
+HAVING count(sab_table.train_number) > 1;
+
+
+
+SELECT sab_table_first.train_number,
+       sab_table_first.train_name,
+       sab_table_first.arrival_time,
+       sab_table_first.station_name,
+       sab_table_second.train_number,
+       sab_table_second.train_name,
+       sab_table_second.arrival_time,
+       sab_table_second.station_name
+FROM (SELECT t.number AS train_number, t.name AS train_name, tt.arrival_time AS arrival_time, s.name AS station_name
+      FROM rwm_storage.timetable tt
+               INNER JOIN rwm_storage.train t ON tt.train_id = t.id
+               INNER JOIN rwm_storage.station s ON tt.station_id = s.id
+      WHERE s.id = 1) sab_table_first
+         INNER JOIN (SELECT t.number        AS train_number,
+                            t.name          AS train_name,
+                            tt.arrival_time AS arrival_time,
+                            s.name          AS station_name
+                     FROM rwm_storage.timetable tt
+                              INNER JOIN rwm_storage.train t ON tt.train_id = t.id
+                              INNER JOIN rwm_storage.station s ON tt.station_id = s.id
+                     WHERE s.id = 2) sab_table_second
+                    ON sab_table_first.train_number = sab_table_second.train_number;
+
+SELECT t.number AS train_number, t.name AS train_name, tt.arrival_time AS arrival_time, s.name AS station_name
+FROM rwm_storage.timetable tt
+         INNER JOIN rwm_storage.train t ON tt.train_id = t.id
+         INNER JOIN rwm_storage.station s ON tt.station_id = s.id
+WHERE s.id = 1;
+
+SELECT t.number        AS train_number,
+       t.name          AS train_name,
+       tt.arrival_time AS arrival_time,
+       s.name          AS station_name
+FROM rwm_storage.timetable tt
+         INNER JOIN rwm_storage.train t ON tt.train_id = t.id
+         INNER JOIN rwm_storage.station s ON tt.station_id = s.id
+WHERE s.id = 2;

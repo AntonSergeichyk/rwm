@@ -251,7 +251,7 @@ VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 701),
 
 INSERT INTO rwm_storage.timetable(train_id, station_id, arrival_time)
 VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 702),
-        (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Moskow'), '2019-12-20 12:40:00');
+        (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Moscow'), '2019-12-20 12:40:00');
 INSERT INTO rwm_storage.timetable(train_id, station_id, arrival_time)
 VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 702),
         (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Minsk'), '2019-12-20 17:10:00');
@@ -264,7 +264,7 @@ VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 702),
 
 INSERT INTO rwm_storage.timetable(train_id, station_id, arrival_time)
 VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 703),
-        (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Moskow'), '2019-12-20 01:10:00');
+        (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Moscow'), '2019-12-20 01:10:00');
 INSERT INTO rwm_storage.timetable(train_id, station_id, arrival_time)
 VALUES ((SELECT t.id FROM rwm_storage.train t WHERE t.number = 703),
         (SELECT s.id FROM rwm_storage.station s WHERE s.name = 'Minsk'), '2019-12-20 05:30:00');
