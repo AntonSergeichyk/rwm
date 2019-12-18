@@ -32,6 +32,17 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "customer", schema = "rwm_storage")
 public class Customer extends BaseEntity {
 
+    public Customer(String firstName, String lastName, String email, Gender gender, LocalDate birthDate,
+
+                    Set<String> phoneNumbers) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.phoneNumbers = phoneNumbers;
+    }
+
     @Column(name = "identity", nullable = false, unique = true)
     private UUID identity;
 
