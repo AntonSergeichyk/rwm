@@ -13,34 +13,37 @@ HAVING count(sab_table.train_number) > 1;
 
 
 
-SELECT sab_table_first.train_number,
+SELECT sab_table_first.train_id,
+       sab_table_first.train_number,
        sab_table_first.train_name,
-       sab_table_first.arrival_time,
-       sab_table_first.station_name,
-       sab_table_second.train_number,
-       sab_table_second.train_name,
+       sab_table_first.departure_time,
+       sab_table_first.departure_station_name,
        sab_table_second.arrival_time,
-       sab_table_second.station_name
-FROM (SELECT t.number AS train_number, t.name AS train_name, tt.arrival_time AS arrival_time, s.name AS station_name
+       sab_table_second.arrival_station_name
+FROM (SELECT t.id            AS train_id,
+             t.number        AS train_number,
+             t.name          AS train_name,
+             tt.arrival_time AS departure_time,
+             s.name          AS departure_station_name
       FROM rwm_storage.timetable tt
                INNER JOIN rwm_storage.train t ON tt.train_id = t.id
                INNER JOIN rwm_storage.station s ON tt.station_id = s.id
-      WHERE s.id = 1) sab_table_first
-         INNER JOIN (SELECT t.number        AS train_number,
+      WHERE s.id = 1
+        AND date(tt.arrival_time) = '2019-12-20') sab_table_first
+         INNER JOIN (SELECT t.id            AS train_id,
+                            t.number        AS train_number,
                             t.name          AS train_name,
                             tt.arrival_time AS arrival_time,
-                            s.name          AS station_name
+                            s.name          AS arrival_station_name
                      FROM rwm_storage.timetable tt
                               INNER JOIN rwm_storage.train t ON tt.train_id = t.id
                               INNER JOIN rwm_storage.station s ON tt.station_id = s.id
-                     WHERE s.id = 2) sab_table_second
-                    ON sab_table_first.train_number = sab_table_second.train_number;
+                     WHERE s.id = 2
+                       AND date(tt.arrival_time) = '2019-12-20') sab_table_second
+                    ON sab_table_first.train_number = sab_table_second.train_number
+WHERE sab_table_first.departure_time < sab_table_second.arrival_time;
 
-SELECT t.number AS train_number, t.name AS train_name, tt.arrival_time AS arrival_time, s.name AS station_name
-FROM rwm_storage.timetable tt
-         INNER JOIN rwm_storage.train t ON tt.train_id = t.id
-         INNER JOIN rwm_storage.station s ON tt.station_id = s.id
-WHERE s.id = 1;
+
 
 SELECT t.number        AS train_number,
        t.name          AS train_name,

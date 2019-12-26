@@ -1,6 +1,6 @@
 --ORDER
 INSERT INTO rwm_storage.order(customer_id, passenger_type, rate, ticket_id)
-VALUES ((SELECT c.id FROM rwm_storage.customer c WHERE c.birth_date = '1992-03-06'),
+VALUES ((SELECT c.id FROM rwm_storage.customer c WHERE email = 'qwerty@gmail.com'),
         'ADULT', 'FULL', (SELECT ti.id
                           FROM rwm_storage.ticket ti
                                    INNER JOIN rwm_storage.place p ON p.id = ti.place_id

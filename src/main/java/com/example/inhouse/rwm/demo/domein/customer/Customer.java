@@ -32,9 +32,8 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "customer", schema = "rwm_storage")
 public class Customer extends BaseEntity {
 
-    public Customer(String firstName, String lastName, String email, Gender gender, LocalDate birthDate,
-
-                    Set<String> phoneNumbers) {
+    public Customer(String firstName, String lastName, String email, Gender gender,
+                    LocalDate birthDate, Set<String> phoneNumbers) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -66,6 +65,12 @@ public class Customer extends BaseEntity {
     @CollectionTable(name = "customer_phone_number", schema = "rwm_storage", joinColumns = {@JoinColumn(name = "customer_id")})
     @Column(name = "phone_number", nullable = false)
     private Set<String> phoneNumbers;
+
+    @OneToOne(mappedBy = "customer", fetch = LAZY)
+    private CustomerBankDetails customerBankDetails;
+
+    @OneToOne(mappedBy = "customer", fetch = LAZY)
+    private CustomerSensitiveDetails customerSensitiveDetails;
 
     @OneToOne(mappedBy = "customer", fetch = LAZY)
     private CustomerAdvancedDetails customerAdvancedDetails;

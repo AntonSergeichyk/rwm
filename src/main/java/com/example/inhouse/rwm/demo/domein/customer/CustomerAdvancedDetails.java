@@ -29,5 +29,5 @@ public class CustomerAdvancedDetails extends BaseEntity {
     private Customer customer;
 
     @OneToMany(mappedBy = "customer")
-    private Set<Order> order;
+    private Set<Order> orders;
 }

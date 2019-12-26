@@ -1,6 +1,8 @@
-package com.example.inhouse.rwm.demo.model.employee;
+package com.example.inhouse.rwm.demo.model.customer;
 
 import com.example.inhouse.rwm.demo.domein.dictionary.common.Gender;
+import com.example.inhouse.rwm.demo.model.customer.bank.AddCustomerBunkDetailsRequest;
+import com.example.inhouse.rwm.demo.model.customer.sensitive.AddCustomerSensitiveDetailsRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,5 +20,6 @@ public class AddOrUpdateCustomerRequest {
     private Gender gender;
     private LocalDate birthDate;
     private Long CustomerAdvancedDetails;
-
+    private AddCustomerBunkDetailsRequest customerBunkDetailsRequest;
+    private AddCustomerSensitiveDetailsRequest customerSensitiveDetailsRequest;
 }
