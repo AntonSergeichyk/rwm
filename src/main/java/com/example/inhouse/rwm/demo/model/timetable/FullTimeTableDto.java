@@ -1,10 +1,11 @@
 package com.example.inhouse.rwm.demo.model.timetable;
 
-import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
@@ -12,16 +13,13 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @Setter
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
-public class StationDto {
+public class FullTimeTableDto {
 
-    private Long id;
-    private String name;
-
-    public StationDto(Station station) {
-        if (station == null){
-            return;
-        }
-        this.id = station.getId();
-        this.name = station.getName();
-    }
+    private Long trainId;
+    private Integer trainNumber;
+    private String trainName;
+    private LocalDateTime departureTime;
+    private String departureStationName;
+    private LocalDateTime arrivalTime;
+    private String arrivalStationName;
 }

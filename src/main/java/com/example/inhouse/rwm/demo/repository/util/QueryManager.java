@@ -2,7 +2,8 @@ package com.example.inhouse.rwm.demo.repository.util;
 
 public final class QueryManager {
 
-    public static final String FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE = "SELECT sab_table_first.train_id,\n" +
+    public static final String FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE = "SELECT " +
+            "       sab_table_first.train_id,\n" +
             "       sab_table_first.train_number,\n" +
             "       sab_table_first.train_name,\n" +
             "       sab_table_first.departure_time,\n" +

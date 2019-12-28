@@ -17,8 +17,11 @@ public class CustomerBunkDetailsServiceImpl implements CustomerBunkDetailsServic
 
     @Override
     public CustomerBankDetails add(AddCustomerBunkDetailsRequest request, Customer customer) {
-        CustomerBankDetails bankDetails = new CustomerBankDetails(request.getPaymentAccountId(),
-                request.getTin(), request.getBankAccountNumber(), customer);
+        CustomerBankDetails bankDetails = new CustomerBankDetails(
+                request.getPaymentAccountId(),
+                request.getTin(),
+                request.getBankAccountNumber(),
+                customer);
         return repository.save(bankDetails);
     }
 

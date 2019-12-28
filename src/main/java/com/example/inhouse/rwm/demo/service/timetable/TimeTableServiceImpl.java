@@ -1,20 +1,18 @@
 package com.example.inhouse.rwm.demo.service.timetable;
 
+import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.example.inhouse.rwm.demo.domein.timetable.TimeTable;
 import com.example.inhouse.rwm.demo.domein.train.Train;
-import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateTimeTableRequest;
-import com.example.inhouse.rwm.demo.model.timetable.TimeTableDto;
+import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.repository.timetable.TimeTableRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,19 +22,28 @@ public class TimeTableServiceImpl implements TimeTableService {
     private final TimeTableRepository repository;
 
     @Override
-    public Page<TimeTableDto> getByStationsAddDate(Long departureStationId, Long arrivalStationId,
-                                                   LocalDate date, PageRequest pageRequest) {
-        return null;
+    public List<FullTimeTableDto> getByStationsAndDate(
+            Long departureStationId,
+            Long arrivalStationId,
+            LocalDate date) {
+        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, date, FullTimeTableDto.class);
     }
 
-    @Override
-    public List<TimeTableDto> getByStationsAddDate(Long departureStationId, Long arrivalStationId, LocalDate date) {
-        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, date);
-    }
+    //TODO
+//    @Override
+//    public List<FullTimeTableDto> getByStationsAndDate(
+//            Long departureStationId,
+//            Long arrivalStationId,
+//            LocalDate date,
+//            PageRequest pageRequest) {
+//        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId,
+//                date, pageRequest, FullTimeTableDto.class);
+//    }
 
     @Override
-    public Optional<TimeTable> getById(Long id) {
-        return repository.findById(id);
+    public TimeTable getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("TimeTable is not found with identity: " + id));
     }
 
     @Override
@@ -55,8 +62,17 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Override
     @Transactional
     public TimeTable update(Long id, AddOrUpdateTimeTableRequest request) {
+        TimeTable timeTable = getById(id);
 
+        Train train = new Train();
+        train.setId(request.getTrainId());
 
-        return null;
+        Station station = new Station();
+        station.setId(request.getTrainId());
+
+        timeTable.setTrain(train);
+        timeTable.setStation(station);
+        timeTable.setArrivalTime(request.getArrivalTime());
+        return timeTable;
     }
 }

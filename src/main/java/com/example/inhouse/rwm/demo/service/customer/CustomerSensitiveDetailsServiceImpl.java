@@ -17,10 +17,16 @@ public class CustomerSensitiveDetailsServiceImpl implements CustomerSensitiveDet
 
     @Override
     public CustomerSensitiveDetails add(AddCustomerSensitiveDetailsRequest request, Customer customer) {
-
-        CustomerSensitiveDetails sensitiveDetails = new CustomerSensitiveDetails(request.getPassportId(), request.getPassportIssuer(), request.getPassportIssuedDate(),
-                request.getPassportExpireDate(), request.getFirstNameRus(), request.getMiddleNameRus(),
-                request.getLastNameRus(), request.getCitizenship(), customer);
+        CustomerSensitiveDetails sensitiveDetails = new CustomerSensitiveDetails(
+                request.getPassportId(),
+                request.getPassportIssuer(),
+                request.getPassportIssuedDate(),
+                request.getPassportExpireDate(),
+                request.getFirstNameRus(),
+                request.getMiddleNameRus(),
+                request.getLastNameRus(),
+                request.getCitizenship(),
+                customer);
         return repository.save(sensitiveDetails);
     }
 

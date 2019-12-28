@@ -1,5 +1,6 @@
 package com.example.inhouse.rwm.demo.service.station;
 
+import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateStationRequest;
@@ -19,13 +20,19 @@ public class StationServiceImpl implements StationService {
     private final StationRepository repository;
 
     @Override
+    public List<Station> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Page<Station> getAll(PageRequest pageRequest) {
         return repository.findAll(pageRequest);
     }
 
     @Override
-    public List<Station> getAll() {
-        return repository.findAll();
+    public Station getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Station is not found with identity: " + id));
     }
 
     @Override
@@ -42,7 +49,7 @@ public class StationServiceImpl implements StationService {
     @Transactional
     @Override
     public Station update(Long id, AddOrUpdateStationRequest request) {
-        Station station = repository.getOne(id);
+        Station station = getById(id);
         station.setName(request.getName());
         return station;
     }

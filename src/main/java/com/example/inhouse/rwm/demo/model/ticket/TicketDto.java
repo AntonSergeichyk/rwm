@@ -2,15 +2,19 @@ package com.example.inhouse.rwm.demo.model.ticket;
 
 import com.example.inhouse.rwm.demo.domein.ticket.Ticket;
 import com.example.inhouse.rwm.demo.model.train.PlaceDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonInclude(NON_NULL)
 public class TicketDto {
 
     private Long id;

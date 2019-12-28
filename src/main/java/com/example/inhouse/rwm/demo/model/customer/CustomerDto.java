@@ -5,6 +5,7 @@ import com.example.inhouse.rwm.demo.domein.dictionary.common.Gender;
 import com.example.inhouse.rwm.demo.model.customer.advanced.CustomerAdvancedDetailsDto;
 import com.example.inhouse.rwm.demo.model.customer.bank.CustomerBankDetailsDto;
 import com.example.inhouse.rwm.demo.model.customer.sensitive.CustomerSensitiveDetailsDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +14,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonInclude(NON_NULL)
 public class CustomerDto {
 
     private String identity;
@@ -33,7 +37,7 @@ public class CustomerDto {
         if (customer == null) {
             return;
         }
-        this.identity = customer.getIdentity().toString();
+//        this.identity = customer.getIdentity().toString();
         this.firstName = customer.getFirstName();
         this.lastName = customer.getLastName();
         this.email = customer.getEmail();

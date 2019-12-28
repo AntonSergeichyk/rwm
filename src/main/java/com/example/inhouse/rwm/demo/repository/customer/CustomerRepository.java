@@ -7,14 +7,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface CustomerRepository extends BaseRepository<Customer> {
 
-    Customer getByIdentity(UUID identity);
+    Optional<Customer> getByIdentity(UUID identity);
 
-    Customer findByEmail(String email);
+    Optional<Customer> findByEmail(String email);
 
     @Query("SELECT c FROM Customer c WHERE month(c.birthDate)=:month AND day(c.birthDate)=:day")
     List<Customer> findAllByBirthday(@Param("month") Integer month, @Param("day") Integer day);

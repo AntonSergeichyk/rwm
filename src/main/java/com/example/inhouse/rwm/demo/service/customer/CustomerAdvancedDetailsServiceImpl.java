@@ -1,5 +1,6 @@
 package com.example.inhouse.rwm.demo.service.customer;
 
+import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.customer.CustomerAdvancedDetails;
 import com.example.inhouse.rwm.demo.repository.customer.CustomerAdvancedDetailsRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ public class CustomerAdvancedDetailsServiceImpl implements CustomerAdvancedDetai
 
     @Override
     public CustomerAdvancedDetails getCustomerByOrderId(Long orderId) {
-        return repository.findByOrderId(orderId);
+        return repository.findByOrderId(orderId)
+                .orElseThrow(() -> new NotFoundException("CustomerAdvancedDetails is not found with orderId: " + orderId));
     }
 }

@@ -10,15 +10,15 @@ import java.util.UUID;
 
 public interface CustomerService {
 
-    Customer getByIdentity(UUID identity);
-
-    Customer findByEmail(String email);
-
-    List<Customer> getAllByBirthdayToday();
+    List<Customer> getAll();
 
     Page<Customer> getAll(PageRequest pageRequest);
 
-    List<Customer> getAll();
+    Customer getByIdentity(UUID identity);
+
+    Customer getByEmail(String email);
+
+    List<Customer> getAllByBirthdayToday();
 
     Customer add(AddOrUpdateCustomerRequest request);
 

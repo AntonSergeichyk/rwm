@@ -25,18 +25,23 @@ public class StationController {
 
     private final StationService service;
 
+    @GetMapping("/list")
+    public List<StationDto> findAll() {
+        return service.getAll().stream().map(StationDto::new).collect(Collectors.toList());
+    }
+
     @GetMapping
     public PageResponse<StationDto> findAll(PageRequest pageRequest) {
         List<StationDto> stations = service.getAll(pageRequest).stream().map(StationDto::new).collect(Collectors.toList());
         return new PageResponse((Page) stations);
     }
 
-    @GetMapping("/list")
-    public List<StationDto> findAll() {
-        return service.getAll().stream().map(StationDto::new).collect(Collectors.toList());
+    @GetMapping("/{stationId}")
+    public StationDto findById(@PathVariable Long stationId) {
+        return new StationDto(service.getById(stationId));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/{name}/name")
     public StationDto getByName(@PathVariable String name) {
         return new StationDto(service.getByName(name));
     }
@@ -47,7 +52,8 @@ public class StationController {
     }
 
     @PutMapping("/{stationId}")
-    public StationDto update(@PathVariable Long stationId, @RequestBody AddOrUpdateStationRequest request) {
+    public StationDto update(@PathVariable Long stationId,
+                             @RequestBody AddOrUpdateStationRequest request) {
         return new StationDto(service.update(stationId, request));
     }
 }

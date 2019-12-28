@@ -1,15 +1,19 @@
 package com.example.inhouse.rwm.demo.model.customer.sensitive;
 
 import com.example.inhouse.rwm.demo.domein.customer.CustomerSensitiveDetails;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonInclude(NON_NULL)
 public class CustomerSensitiveDetailsDto {
 
     private Long id;

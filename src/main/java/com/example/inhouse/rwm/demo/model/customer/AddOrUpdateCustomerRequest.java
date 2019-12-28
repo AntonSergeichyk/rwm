@@ -19,7 +19,7 @@ public class AddOrUpdateCustomerRequest {
     private Set<String> phoneNumbers;
     private Gender gender;
     private LocalDate birthDate;
-    private Long CustomerAdvancedDetails;
     private AddCustomerBunkDetailsRequest customerBunkDetailsRequest;
     private AddCustomerSensitiveDetailsRequest customerSensitiveDetailsRequest;
+    private Long CustomerAdvancedDetails;
 }

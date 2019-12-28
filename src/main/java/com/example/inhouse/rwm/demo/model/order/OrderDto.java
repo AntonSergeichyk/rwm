@@ -4,13 +4,17 @@ import com.example.inhouse.rwm.demo.domein.dictionary.order.PassengerType;
 import com.example.inhouse.rwm.demo.domein.dictionary.order.Rate;
 import com.example.inhouse.rwm.demo.domein.order.Order;
 import com.example.inhouse.rwm.demo.model.ticket.TicketDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonInclude(NON_NULL)
 public class OrderDto {
 
     private Long id;

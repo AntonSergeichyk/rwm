@@ -7,12 +7,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -42,7 +44,10 @@ public class Customer extends BaseEntity {
         this.phoneNumbers = phoneNumbers;
     }
 
-    @Column(name = "identity", nullable = false, unique = true)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "identity", columnDefinition = "uuid DEFAULT uuid_generate_v4()",
+            nullable = false, unique = true, insertable = false)
     private UUID identity;
 
     @Column(name = "first_name", nullable = false)

@@ -1,5 +1,6 @@
 package com.example.inhouse.rwm.demo.service.customer;
 
+import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.customer.Customer;
 import com.example.inhouse.rwm.demo.domein.customer.CustomerBankDetails;
 import com.example.inhouse.rwm.demo.domein.customer.CustomerSensitiveDetails;
@@ -26,18 +27,8 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerSensitiveDetailsService sensitiveDetailsService;
 
     @Override
-    public Customer getByIdentity(UUID identity) {
-        return repository.getByIdentity(identity);
-    }
-
-    @Override
-    public Customer findByEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
-    @Override
-    public List<Customer> getAllByBirthdayToday() {
-        return repository.findAllByBirthday(now().getMonthValue(), now().getDayOfMonth());
+    public List<Customer> getAll() {
+        return repository.findAll();
     }
 
     @Override
@@ -46,19 +37,41 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAll() {
-        return repository.findAll();
+    public Customer getByIdentity(UUID identity) {
+        return repository.getByIdentity(identity)
+                .orElseThrow(() -> new NotFoundException("Customer is not found with identity: " + identity));
+    }
+
+    @Override
+    public Customer getByEmail(String email) {
+        return repository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Customer is not found with email: " + email));
+    }
+
+    @Override
+    public List<Customer> getAllByBirthdayToday() {
+        return repository.findAllByBirthday(now().getMonthValue(), now().getDayOfMonth());
     }
 
     @Transactional
     @Override
     public Customer add(AddOrUpdateCustomerRequest request) {
-        Customer customer = new Customer(request.getFirstName(), request.getLastName(), request.getEmail(),
-                request.getGender(), request.getBirthDate(), request.getPhoneNumbers());
+        Customer customer = new Customer(
+                request.getFirstName(),
+                request.getLastName(),
+                request.getEmail(),
+                request.getGender(),
+                request.getBirthDate(),
+                request.getPhoneNumbers());
         Customer persistCustomer = repository.save(customer);
 
-        CustomerBankDetails bankDetails = bunkDetailsService.add(request.getCustomerBunkDetailsRequest(), persistCustomer);
-        CustomerSensitiveDetails sensitiveDetails = sensitiveDetailsService.add(request.getCustomerSensitiveDetailsRequest(), persistCustomer);
+        CustomerBankDetails bankDetails = bunkDetailsService.add(
+                request.getCustomerBunkDetailsRequest(),
+                persistCustomer);
+
+        CustomerSensitiveDetails sensitiveDetails = sensitiveDetailsService.add(
+                request.getCustomerSensitiveDetailsRequest(),
+                persistCustomer);
 
         persistCustomer.setCustomerBankDetails(bankDetails);
         persistCustomer.setCustomerSensitiveDetails(sensitiveDetails);
@@ -73,8 +86,12 @@ public class CustomerServiceImpl implements CustomerService {
         bunkDetailsService.delete(customer.getCustomerBankDetails());
         sensitiveDetailsService.delete(customer.getCustomerSensitiveDetails());
 
-        CustomerBankDetails bankDetails = bunkDetailsService.add(request.getCustomerBunkDetailsRequest(), customer);
-        CustomerSensitiveDetails sensitiveDetails = sensitiveDetailsService.add(request.getCustomerSensitiveDetailsRequest(), customer);
+        CustomerBankDetails bankDetails = bunkDetailsService.add(
+                request.getCustomerBunkDetailsRequest(),
+                customer);
+        CustomerSensitiveDetails sensitiveDetails = sensitiveDetailsService.add(
+                request.getCustomerSensitiveDetailsRequest(),
+                customer);
 
         customer.setFirstName(request.getFirstName());
         customer.setLastName(request.getLastName());
@@ -85,6 +102,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setCustomerBankDetails(bankDetails);
         customer.setCustomerSensitiveDetails(sensitiveDetails);
 
-        return repository.save(customer);
+        return customer;
     }
 }

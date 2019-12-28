@@ -1,6 +1,5 @@
 package com.example.inhouse.rwm.demo.controller.api.customer;
 
-import com.example.inhouse.rwm.demo.domein.customer.Customer;
 import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.PageResponse;
 import com.example.inhouse.rwm.demo.model.customer.AddOrUpdateCustomerRequest;
@@ -29,20 +28,25 @@ public class CustomerController {
     private final CustomerService service;
     private final CustomerAdvancedDetailsService advancedDetailsService;
 
+    @GetMapping("/list")
+    public List<CustomerDto> getAll() {
+        return service.getAll().stream().map(CustomerDto::new).collect(Collectors.toList());
+    }
+
     @GetMapping
-    public PageResponse<CustomerDto> findAll(PageRequest pageRequest) {
+    public PageResponse<CustomerDto> getAll(PageRequest pageRequest) {
         List<CustomerDto> customers = service.getAll(pageRequest).stream().map(CustomerDto::new).collect(Collectors.toList());
         return new PageResponse((Page) customers);
     }
 
-    @GetMapping("/list")
-    public List<CustomerDto> findAll() {
-        return service.getAll().stream().map(CustomerDto::new).collect(Collectors.toList());
+    @GetMapping("/{customerIdentity}")
+    public CustomerDto getByIdentity(@PathVariable UUID customerIdentity) {
+        return new CustomerDto(service.getByIdentity(customerIdentity));
     }
 
-    @GetMapping("/{identity}")
-    public CustomerDto getByIdentity(@PathVariable UUID identity) {
-        return new CustomerDto(service.getByIdentity(identity));
+    @GetMapping("/{email}/email")
+    public CustomerDto getByEmail(@PathVariable String email) {
+        return new CustomerDto(service.getByEmail(email));
     }
 
     @PostMapping
@@ -50,10 +54,10 @@ public class CustomerController {
         return new CustomerDto(service.add(request));
     }
 
-    @PutMapping("/{identity}")
-    public CustomerDto update(@PathVariable UUID identity,
+    @PutMapping("/{customerIdentity}")
+    public CustomerDto update(@PathVariable UUID customerIdentity,
                               @RequestBody AddOrUpdateCustomerRequest request) {
-        return new CustomerDto(service.update(identity, request));
+        return new CustomerDto(service.update(customerIdentity, request));
     }
 
     @GetMapping("/order/{orderId}")

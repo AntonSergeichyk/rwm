@@ -10,13 +10,15 @@ import java.util.List;
 
 public interface StationService {
 
+    List<Station> getAll();
+
     Page<Station> getAll(PageRequest pageRequest);
 
-    List<Station> getAll();
+    Station getById(Long id);
 
     Station getByName(String name);
 
     Station add(AddOrUpdateStationRequest request);
 
-    Station update(Long id,AddOrUpdateStationRequest request);
+    Station update(Long id, AddOrUpdateStationRequest request);
 }

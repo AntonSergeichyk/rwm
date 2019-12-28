@@ -7,11 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface CustomerAdvancedDetailsRepository extends BaseRepository<CustomerAdvancedDetails> {
 
     CustomerAdvancedDetails findByCustomer(Customer customer);
 
     @Query("SELECT c FROM Order o JOIN CustomerAdvancedDetails ca JOIN Customer c  WHERE o.id=:orderId")
-    CustomerAdvancedDetails findByOrderId(@Param("orderId") Long orderId);
+    Optional<CustomerAdvancedDetails> findByOrderId(@Param("orderId") Long orderId);
 }
