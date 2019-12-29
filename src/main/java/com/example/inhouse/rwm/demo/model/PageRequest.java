@@ -1,7 +1,6 @@
 package com.example.inhouse.rwm.demo.model;
 
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,7 +9,6 @@ import org.springframework.data.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
-@AllArgsConstructor
 @EqualsAndHashCode
 public class PageRequest implements Pageable {
 
@@ -22,7 +20,24 @@ public class PageRequest implements Pageable {
     private String sortBy = ID_FIELD.getFirst();
     private Map<String, String> mapSortBy = new HashMap<>();
 
-    public void init() {
+    public PageRequest(Integer offset, Integer limit, Sort.Direction sortDirection, String sortBy, Map<String, String> mapSortBy) {
+        this.offset = offset;
+        this.limit = limit;
+        this.sortDirection = sortDirection;
+        this.sortBy = sortBy;
+        this.mapSortBy = mapSortBy;
+        init();
+    }
+
+    public PageRequest(Integer offset, Integer limit, Sort.Direction sortDirection, String sortBy) {
+        this.offset = offset;
+        this.limit = limit;
+        this.sortDirection = sortDirection;
+        this.sortBy = sortBy;
+        init();
+    }
+
+    private void init() {
         mapSortBy.put(ID_FIELD.getFirst(), ID_FIELD.getSecond());
     }
 
