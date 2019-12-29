@@ -7,11 +7,13 @@ import com.example.inhouse.rwm.demo.domein.train.Train;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateTimeTableRequest;
 import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.repository.timetable.TimeTableRepository;
+import com.example.inhouse.rwm.demo.service.common.DateManager;
+import com.example.inhouse.rwm.demo.service.station.StationService;
+import com.example.inhouse.rwm.demo.service.train.TrainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,13 +22,16 @@ import java.util.List;
 public class TimeTableServiceImpl implements TimeTableService {
 
     private final TimeTableRepository repository;
+    private final TrainService trainService;
+    private final StationService stationService;
 
     @Override
+
     public List<FullTimeTableDto> getByStationsAndDate(
             Long departureStationId,
             Long arrivalStationId,
-            LocalDate date) {
-        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, date, FullTimeTableDto.class);
+            String date) {
+        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, DateManager.parse(date));
     }
 
     //TODO
@@ -49,11 +54,8 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Override
     @Transactional
     public TimeTable add(AddOrUpdateTimeTableRequest request) {
-        Train train = new Train();
-        train.setId(request.getTrainId());
-
-        Station station = new Station();
-        station.setId(request.getTrainId());
+        Train train = trainService.getById(request.getTrainId());
+        Station station = stationService.getById(request.getTrainId());
 
         TimeTable timeTable = new TimeTable(train, station, request.getArrivalTime());
         return repository.save(timeTable);
@@ -64,11 +66,8 @@ public class TimeTableServiceImpl implements TimeTableService {
     public TimeTable update(Long id, AddOrUpdateTimeTableRequest request) {
         TimeTable timeTable = getById(id);
 
-        Train train = new Train();
-        train.setId(request.getTrainId());
-
-        Station station = new Station();
-        station.setId(request.getTrainId());
+        Train train = trainService.getById(request.getTrainId());
+        Station station = stationService.getById(request.getTrainId());
 
         timeTable.setTrain(train);
         timeTable.setStation(station);

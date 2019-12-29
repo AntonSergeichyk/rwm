@@ -28,7 +28,7 @@ public class TimeTableController {
     @GetMapping("/list")
     public List<FullTimeTableDto> getByStationsAndDate(@RequestParam Long departureStationId,
                                                        @RequestParam Long arrivalStationId,
-                                                       @RequestParam LocalDate date) {
+                                                       @RequestParam String date) {
         return service.getByStationsAndDate(departureStationId, arrivalStationId, date);
     }
 

@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 public class AddOrUpdateTimeTableRequest {
 
     private Long trainId;
-    private Long stationId;
+            private Long Tim;
     private LocalDateTime arrivalTime;
 }

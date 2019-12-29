@@ -18,8 +18,7 @@ public interface TimeTableRepository extends BaseRepository<TimeTable> {
     @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)
     <T> List<T> findByDepartureStAndArrivalStAddDate(@Param("station1") Long departureStationId,
                                                      @Param("station2") Long arrivalStationId,
-                                                     @Param("date") LocalDate date,
-                                                     Class<T> type);
+                                                     @Param("date") LocalDate date);
 
     //    TODO
 //    @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)

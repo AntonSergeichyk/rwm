@@ -17,6 +17,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public class TimeTableDto {
 
+    private Long id;
     private TrainDto train;
     private StationDto station;
     private LocalDateTime arrivalTime;
@@ -25,6 +26,7 @@ public class TimeTableDto {
         if (timeTable == null) {
             return;
         }
+        this.id = timeTable.getId();
         this.train = new TrainDto(timeTable.getTrain());
         this.station = new StationDto(timeTable.getStation());
         this.arrivalTime = timeTable.getArrivalTime();
