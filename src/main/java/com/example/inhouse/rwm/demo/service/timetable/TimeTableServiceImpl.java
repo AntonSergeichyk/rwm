@@ -4,6 +4,7 @@ import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.example.inhouse.rwm.demo.domein.timetable.TimeTable;
 import com.example.inhouse.rwm.demo.domein.train.Train;
+import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateTimeTableRequest;
 import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.repository.timetable.TimeTableRepository;
@@ -11,9 +12,13 @@ import com.example.inhouse.rwm.demo.service.common.DateManager;
 import com.example.inhouse.rwm.demo.service.station.StationService;
 import com.example.inhouse.rwm.demo.service.train.TrainService;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 @Service
@@ -26,24 +31,19 @@ public class TimeTableServiceImpl implements TimeTableService {
     private final StationService stationService;
 
     @Override
-
-    public List<FullTimeTableDto> getByStationsAndDate(
-            Long departureStationId,
-            Long arrivalStationId,
-            String date) {
+    public List<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId, String date) {
         return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, DateManager.parse(date));
     }
 
-    //TODO
-//    @Override
-//    public List<FullTimeTableDto> getByStationsAndDate(
-//            Long departureStationId,
-//            Long arrivalStationId,
-//            LocalDate date,
-//            PageRequest pageRequest) {
-//        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId,
-//                date, pageRequest, FullTimeTableDto.class);
-//    }
+    @Override
+    public Page<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId,
+            String date, PageRequest pageRequest) {
+        return new OperationNotSupportedException("method not supported");
+//        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId,
+//                departureStationId,
+//                DateManager.parse(date),
+//                pageRequest);
+    }
 
     @Override
     public TimeTable getById(Long id) {

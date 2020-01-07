@@ -1,5 +1,6 @@
 package com.example.inhouse.rwm.demo.controller.api.station;
 
+import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.PageResponse;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateStationRequest;
@@ -32,8 +33,9 @@ public class StationController {
 
     @GetMapping
     public PageResponse<StationDto> findAll(PageRequest pageRequest) {
-        List<StationDto> stations = service.getAll(pageRequest).stream().map(StationDto::new).collect(Collectors.toList());
-        return new PageResponse((Page) stations);
+        Page<Station> pageStations = service.getAll(pageRequest);
+        List<StationDto> stations = pageStations.stream().map(StationDto::new).collect(Collectors.toList());
+        return new PageResponse<StationDto>(pageStations.getTotalElements(), stations);
     }
 
     @GetMapping("/{stationId}")

@@ -1,5 +1,6 @@
 package com.example.inhouse.rwm.demo.controller.api.customer;
 
+import com.example.inhouse.rwm.demo.domein.customer.Customer;
 import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.PageResponse;
 import com.example.inhouse.rwm.demo.model.customer.AddOrUpdateCustomerRequest;
@@ -35,8 +36,9 @@ public class CustomerController {
 
     @GetMapping
     public PageResponse<CustomerDto> getAll(PageRequest pageRequest) {
-        List<CustomerDto> customers = service.getAll(pageRequest).stream().map(CustomerDto::new).collect(Collectors.toList());
-        return new PageResponse((Page) customers);
+        Page<Customer> pageCustomer = service.getAll(pageRequest);
+        List<CustomerDto> customers = pageCustomer.stream().map(CustomerDto::new).collect(Collectors.toList());
+        return new PageResponse<CustomerDto>(pageCustomer.getTotalElements(), customers);
     }
 
     @GetMapping("/{customerIdentity}")

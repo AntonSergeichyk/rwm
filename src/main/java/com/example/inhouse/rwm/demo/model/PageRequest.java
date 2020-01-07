@@ -14,30 +14,23 @@ public class PageRequest implements Pageable {
 
     private static Pair<String, String> ID_FIELD = Pair.of("id", "id");
 
-    private Integer offset = 0;
-    private Integer limit = 100;
-    private Sort.Direction sortDirection = Sort.Direction.ASC;
-    private String sortBy = ID_FIELD.getFirst();
-    private Map<String, String> mapSortBy = new HashMap<>();
+    private Integer offset;
+    private Integer limit;
+    private Sort.Direction sortDirection;
+    private String sortBy;
+    private Map<String, String> mapSortBy;
 
-    public PageRequest(Integer offset, Integer limit, Sort.Direction sortDirection, String sortBy, Map<String, String> mapSortBy) {
+
+    public PageRequest(Integer offset, Integer limit) {
         this.offset = offset;
         this.limit = limit;
-        this.sortDirection = sortDirection;
-        this.sortBy = sortBy;
-        this.mapSortBy = mapSortBy;
-        init();
-    }
-
-    public PageRequest(Integer offset, Integer limit, Sort.Direction sortDirection, String sortBy) {
-        this.offset = offset;
-        this.limit = limit;
-        this.sortDirection = sortDirection;
-        this.sortBy = sortBy;
         init();
     }
 
     private void init() {
+        sortDirection = Sort.Direction.ASC;
+        sortBy = ID_FIELD.getFirst();
+        mapSortBy = new HashMap<>();
         mapSortBy.put(ID_FIELD.getFirst(), ID_FIELD.getSecond());
     }
 
@@ -47,7 +40,8 @@ public class PageRequest implements Pageable {
             if (newOffset < 0) {
                 newOffset = 0;
             }
-            return new PageRequest(newOffset, limit, sortDirection, sortBy, mapSortBy);
+//            return new PageRequest(newOffset, limit, sortDirection, sortBy, mapSortBy);
+            return new PageRequest(newOffset, limit);
         }
         return first();
     }
@@ -77,7 +71,7 @@ public class PageRequest implements Pageable {
 
     @Override
     public Pageable next() {
-        return new PageRequest(offset + limit, limit, sortDirection, sortBy, mapSortBy);
+        return new PageRequest(offset + limit, limit);
     }
 
     @Override
@@ -87,7 +81,7 @@ public class PageRequest implements Pageable {
 
     @Override
     public Pageable first() {
-        return new PageRequest(0, limit, sortDirection, sortBy, mapSortBy);
+        return new PageRequest(0, limit);
     }
 
     @Override

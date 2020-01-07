@@ -1,6 +1,7 @@
 package com.example.inhouse.rwm.demo.controller.api.timetable;
 
 import com.example.inhouse.rwm.demo.model.PageRequest;
+import com.example.inhouse.rwm.demo.model.PageResponse;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateTimeTableRequest;
 import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.model.timetable.TimeTableDto;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -32,14 +32,13 @@ public class TimeTableController {
         return service.getByStationsAndDate(departureStationId, arrivalStationId, date);
     }
 
-//      TODO
-//    @GetMapping
-//    public List<FullTimeTableDto> getByStationsAndDate(@RequestParam Long departureStationId,
-//                                                       @RequestParam Long arrivalStationId,
-//                                                       @RequestParam LocalDate date,
-//                                                       PageRequest pageRequest) {
-//        return service.getByStationsAndDate(departureStationId, arrivalStationId, date, pageRequest);
-//    }
+    @GetMapping
+    public PageResponse<FullTimeTableDto> getByStationsAndDate(@RequestParam Long departureStationId,
+                                                       @RequestParam Long arrivalStationId,
+                                                       @RequestParam String date,
+                                                       PageRequest pageRequest) {
+        return new PageResponse<FullTimeTableDto>(service.getByStationsAndDate(departureStationId, arrivalStationId, date, pageRequest));
+    }
 
     @GetMapping("/{timetableId}")
     public TimeTableDto getById(@PathVariable Long timetableId) {

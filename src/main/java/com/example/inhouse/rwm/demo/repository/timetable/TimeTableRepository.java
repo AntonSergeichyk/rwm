@@ -2,7 +2,9 @@ package com.example.inhouse.rwm.demo.repository.timetable;
 
 import com.example.inhouse.rwm.demo.domein.timetable.TimeTable;
 import com.example.inhouse.rwm.demo.model.PageRequest;
+import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.repository.BaseRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,11 +22,10 @@ public interface TimeTableRepository extends BaseRepository<TimeTable> {
                                                      @Param("station2") Long arrivalStationId,
                                                      @Param("date") LocalDate date);
 
-    //    TODO
-//    @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)
-//    <T> List<T> findByDepartureStAndArrivalStAddDate(@Param("station1") Long departureStationId,
-//                                                     @Param("station2") Long arrivalStationId,
-//                                                     @Param("date") LocalDate date,
-//                                                     PageRequest pageRequest,
-//                                                     Class<T> type);
+//    @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE,
+//            countQuery = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)
+//    Page<FullTimeTableDto> findByDepartureStAndArrivalStAddDate(@Param("station1") Long departureStationId,
+//                                                                @Param("station2") Long arrivalStationId,
+//                                                                @Param("date") LocalDate date,
+//                                                                PageRequest pageRequest);
 }
