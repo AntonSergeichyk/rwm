@@ -22,10 +22,10 @@ public interface TimeTableRepository extends BaseRepository<TimeTable> {
                                                      @Param("station2") Long arrivalStationId,
                                                      @Param("date") LocalDate date);
 
-//    @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE,
-//            countQuery = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)
-//    Page<FullTimeTableDto> findByDepartureStAndArrivalStAddDate(@Param("station1") Long departureStationId,
-//                                                                @Param("station2") Long arrivalStationId,
-//                                                                @Param("date") LocalDate date,
-//                                                                PageRequest pageRequest);
+    @Query(nativeQuery = true, value = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE,
+            countQuery = FIND_BY_DEPARTURE_ST_AND_ARRIVAL_ST_AND_DATE)
+    Page<FullTimeTableDto> findByDepartureStAndArrivalStAddDate(@Param("station1") Long departureStationId,
+                                                                @Param("station2") Long arrivalStationId,
+                                                                @Param("date") LocalDate date,
+                                                                PageRequest pageRequest);
 }

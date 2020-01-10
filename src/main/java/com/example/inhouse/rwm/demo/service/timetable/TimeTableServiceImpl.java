@@ -12,9 +12,7 @@ import com.example.inhouse.rwm.demo.service.common.DateManager;
 import com.example.inhouse.rwm.demo.service.station.StationService;
 import com.example.inhouse.rwm.demo.service.train.TrainService;
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,12 +35,8 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     @Override
     public Page<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId,
-            String date, PageRequest pageRequest) {
-        return new OperationNotSupportedException("method not supported");
-//        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId,
-//                departureStationId,
-//                DateManager.parse(date),
-//                pageRequest);
+                                                       String date, PageRequest pageRequest) throws OperationNotSupportedException {
+        throw new OperationNotSupportedException("pagination not supported");
     }
 
     @Override
