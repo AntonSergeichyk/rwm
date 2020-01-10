@@ -10,8 +10,9 @@ import java.util.List;
 @Repository
 public interface PlaceRepository extends BaseRepository<Place> {
 
-    @Query()
+    @Query("SELECT count(p) FROM Waggon w JOIN Place p  WHERE p.bought=true AND p.waggon=:waggonId")
     Integer getCountFreeByWaggonId(Long waggonId);
 
     List<Place> getByWaggonIdAndBought(Long waggonId, Boolean bought);
+
 }

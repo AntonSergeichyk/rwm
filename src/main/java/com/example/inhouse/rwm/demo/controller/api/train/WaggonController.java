@@ -3,10 +3,7 @@ package com.example.inhouse.rwm.demo.controller.api.train;
 import com.example.inhouse.rwm.demo.model.train.WaggonDto;
 import com.example.inhouse.rwm.demo.service.train.WaggonService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +24,7 @@ public class WaggonController {
 
     @GetMapping("/{trainId}/free")
     private List<WaggonDto> getFreeByTrainId(@RequestParam Long trainId,
-                                             @RequestParam Boolean bought) {
+                                             @PathVariable Boolean bought) {
         return service.getFreeByTrainId(trainId, bought).stream()
                 .map(WaggonDto::new)
                 .collect(Collectors.toList());

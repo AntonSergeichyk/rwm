@@ -9,4 +9,10 @@ public interface PlaceService {
     Integer getCountFreeByWaggonId(Long waggonId);
 
     List<Place> getByWaggonId(Long waggonId, Boolean bought);
+
+    Place getById(Long placeId);
+
+    Place reserve(Long placeId);
+
+    Place removeReservation(Long placeId);
 }
