@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class TimeTableController {
     public PageResponse<FullTimeTableDto> getByStationsAndDate(@RequestParam Long departureStationId,
                                                        @RequestParam Long arrivalStationId,
                                                        @RequestParam String date,
-                                                       PageRequest pageRequest) {
+                                                       PageRequest pageRequest) throws OperationNotSupportedException {
         return new PageResponse<FullTimeTableDto>(service.getByStationsAndDate(departureStationId, arrivalStationId, date, pageRequest));
     }
 
