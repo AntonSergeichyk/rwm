@@ -53,6 +53,6 @@ public class PlaceServiceImpl implements PlaceService {
             throw new ReservedException("The place " + placeId + " was bought.");
         }
         place.setReserved(REMOVE_RESERVED);
-        return null;
+        return place;
     }
 }

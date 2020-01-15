@@ -15,31 +15,31 @@ public class PlaceController {
 
     private final PlaceService service;
 
-    @GetMapping("/count/{waggonId}/free")
-    public Integer getCountFreeByWaggonId(@RequestParam Long waggonId) {
+    @GetMapping("/count/{waggonId}/free/waggon")
+    public Integer getCountFreeByWaggonId(@PathVariable Long waggonId) {
         return service.getCountFreeByWaggonId(waggonId);
     }
 
-    @GetMapping("/{waggonId}/free")
-    public List<PlaceDto> getByWaggonId(@RequestParam Long waggonId,
-                                        @PathVariable Boolean bought) {
+    @GetMapping("/{waggonId}/free/waggon")
+    public List<PlaceDto> getByWaggonId(@PathVariable Long waggonId,
+                                        @RequestParam Boolean bought) {
         return service.getByWaggonId(waggonId, bought).stream()
                 .map(PlaceDto::new)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{placeId}")
-    public PlaceDto getById(@RequestParam Long placeId) {
+    public PlaceDto getById(@PathVariable Long placeId) {
         return new PlaceDto(service.getById(placeId));
     }
 
     @PutMapping("/{placeId}/reserve")
-    public PlaceDto reserve(@RequestParam Long placeId) {
+    public PlaceDto reserve(@PathVariable Long placeId) {
         return new PlaceDto(service.reserve(placeId));
     }
 
     @PutMapping("/{placeId}/reserve/remove")
-    public PlaceDto removeReservation(@RequestParam Long placeId) {
+    public PlaceDto removeReservation(@PathVariable Long placeId) {
         return new PlaceDto(service.removeReservation(placeId));
     }
 }

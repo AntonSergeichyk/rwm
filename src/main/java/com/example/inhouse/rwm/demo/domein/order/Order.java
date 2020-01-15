@@ -42,6 +42,9 @@ public class Order extends BaseEntity {
     @Column(name = "rate", nullable = false)
     private Rate rate;
 
+    @Column(name = "amount", nullable = false)
+    private String amount;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

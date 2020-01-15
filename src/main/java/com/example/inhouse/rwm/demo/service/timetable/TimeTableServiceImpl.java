@@ -30,7 +30,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     @Override
     public List<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId, String date) {
-        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, DateManager.parse(date));
+        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, DateManager.parseDate(date));
     }
 
     @Override
@@ -49,9 +49,9 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Transactional
     public TimeTable add(AddOrUpdateTimeTableRequest request) {
         Train train = trainService.getById(request.getTrainId());
-        Station station = stationService.getById(request.getTrainId());
+        Station station = stationService.getById(request.getStationId());
 
-        TimeTable timeTable = new TimeTable(train, station, request.getArrivalTime());
+        TimeTable timeTable = new TimeTable(train, station, DateManager.parseDateTime(request.getArrivalTime()));
         return repository.save(timeTable);
     }
 
@@ -61,11 +61,11 @@ public class TimeTableServiceImpl implements TimeTableService {
         TimeTable timeTable = getById(id);
 
         Train train = trainService.getById(request.getTrainId());
-        Station station = stationService.getById(request.getTrainId());
+        Station station = stationService.getById(request.getStationId());
 
         timeTable.setTrain(train);
         timeTable.setStation(station);
-        timeTable.setArrivalTime(request.getArrivalTime());
+        timeTable.setArrivalTime(DateManager.parseDateTime(request.getArrivalTime()));
         return timeTable;
     }
 }

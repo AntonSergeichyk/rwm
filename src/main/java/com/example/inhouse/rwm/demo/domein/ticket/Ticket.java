@@ -1,6 +1,7 @@
 package com.example.inhouse.rwm.demo.domein.ticket;
 
 import com.example.inhouse.rwm.demo.domein.BaseEntity;
+import com.example.inhouse.rwm.demo.domein.timetable.Station;
 import com.example.inhouse.rwm.demo.domein.train.Place;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,8 +28,16 @@ public class Ticket extends BaseEntity {
     @Column(name = "date_of_leave", nullable = false)
     private LocalDateTime dateOfLeave;
 
+    @ManyToOne
+    @JoinColumn(name = "station_of_leave_id", nullable = false)
+    private Station stationLeave;
+
     @Column(name = "date_of_arrival", nullable = false)
     private LocalDateTime dateOfArrival;
+
+    @ManyToOne
+    @JoinColumn(name = "station_of_arrival_id", nullable = false)
+    private Station stationArrival;
 
     @Column(name = "cost", nullable = false)
     private String cost;

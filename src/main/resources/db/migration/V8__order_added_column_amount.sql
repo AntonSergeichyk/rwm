@@ -1,0 +1,2 @@
+ALTER TABLE rwm_storage.order
+ADD COLUMN IF NOT EXISTS amount VARCHAR(255) NULL;

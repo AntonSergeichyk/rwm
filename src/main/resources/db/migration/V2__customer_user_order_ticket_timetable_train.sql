@@ -1,5 +1,7 @@
 CREATE SCHEMA rwm_storage;
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE rwm_storage.customer
 (
     id           BIGSERIAL PRIMARY KEY,

@@ -15,16 +15,16 @@ public class WaggonController {
 
     private final WaggonService service;
 
-    @GetMapping("/{trainId}")
-    private List<WaggonDto> getByTrainId(@RequestParam Long trainId) {
+    @GetMapping("/{trainId}/train")
+    private List<WaggonDto> getByTrainId(@PathVariable Long trainId) {
         return service.getByTrainId(trainId).stream()
                 .map(WaggonDto::new)
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{trainId}/free")
-    private List<WaggonDto> getFreeByTrainId(@RequestParam Long trainId,
-                                             @PathVariable Boolean bought) {
+    @GetMapping("/{trainId}/free/train")
+    private List<WaggonDto> getFreeByTrainId(@PathVariable Long trainId,
+                                             @RequestParam Boolean bought) {
         return service.getFreeByTrainId(trainId, bought).stream()
                 .map(WaggonDto::new)
                 .collect(Collectors.toList());
