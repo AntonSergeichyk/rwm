@@ -21,6 +21,7 @@ public class OrderDto {
     private TicketDto ticket;
     private PassengerType passengerType;
     private Rate rate;
+    private String amount;
     private Long customerId;
 
     public OrderDto(Order order) {
@@ -31,6 +32,7 @@ public class OrderDto {
         this.ticket = new TicketDto(order.getTicket());
         this.passengerType = order.getPassengerType();
         this.rate = order.getRate();
+        this.amount = order.getAmount();
         this.customerId = order.getCustomer().getId();
     }
 }

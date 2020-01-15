@@ -27,6 +27,7 @@ public class TicketServiceImpl implements TicketService {
         return repository.findById(ticketId).orElseThrow(() -> new NotFoundException("Ticket is not found with identity: " + ticketId));
     }
 
+    @Transactional
     @Override
     public Ticket add(AddOrUpdateTicketRequest request) {
         Station leaveStation = stationService.getById(request.getStationLeaveId());
