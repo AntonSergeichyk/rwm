@@ -39,6 +39,9 @@ public class Place extends BaseEntity {
     @Column(name = "bought", nullable = false)
     private Boolean bought;
 
+    @Column(name = "bought", nullable = false)
+    private String cost;
+
     @ManyToOne
     @JoinColumn(name = "waggon_id", nullable = false)
     private Waggon waggon;

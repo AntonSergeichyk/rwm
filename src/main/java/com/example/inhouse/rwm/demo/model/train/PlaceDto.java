@@ -20,6 +20,7 @@ public class PlaceDto {
     private PlaceType placeType;
     private Boolean reserved;
     private Boolean bought;
+    private String cost;
     private WaggonDto waggon;
 
     public PlaceDto(Place place) {
@@ -31,6 +32,7 @@ public class PlaceDto {
         this.placeType = place.getPlaceType();
         this.reserved = place.getReserved();
         this.bought = place.getBought();
+        this.cost = place.getCost();
         this.waggon = new WaggonDto(place.getWaggon());
     }
 }

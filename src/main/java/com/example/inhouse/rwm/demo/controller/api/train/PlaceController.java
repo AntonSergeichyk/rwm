@@ -28,6 +28,14 @@ public class PlaceController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{waggonId}/free/waggon/cost")
+    public List<PlaceDto> getByWaggonIdWithCost(@PathVariable Long waggonId,
+                                        @RequestParam Boolean bought) {
+        return service.getByWaggonId(waggonId, bought).stream()
+                .map(PlaceDto::new)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/{placeId}")
     public PlaceDto getById(@PathVariable Long placeId) {
         return new PlaceDto(service.getById(placeId));
@@ -41,5 +49,15 @@ public class PlaceController {
     @PutMapping("/{placeId}/reserve/remove")
     public PlaceDto removeReservation(@PathVariable Long placeId) {
         return new PlaceDto(service.removeReservation(placeId));
+    }
+
+    @PutMapping("/{placeId}/bay")
+    public PlaceDto bay(@PathVariable Long placeId) {
+        return new PlaceDto(service.bay(placeId));
+    }
+
+    @PutMapping("/{placeId}/giveAway")
+    public PlaceDto giveAway(@PathVariable Long placeId) {
+        return new PlaceDto(service.giveAway(placeId));
     }
 }

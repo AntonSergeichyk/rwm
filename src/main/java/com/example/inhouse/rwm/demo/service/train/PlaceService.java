@@ -10,9 +10,15 @@ public interface PlaceService {
 
     List<Place> getByWaggonId(Long waggonId, Boolean bought);
 
+    List<Place> getByWaggonIdWithCost(Long waggonId, Boolean bought);
+
     Place getById(Long placeId);
 
     Place reserve(Long placeId);
 
     Place removeReservation(Long placeId);
+
+    Place bay(Long placeId);
+
+    Place giveAway(Long placeId);
 }

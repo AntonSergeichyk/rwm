@@ -40,6 +40,11 @@ public class TimeTableServiceImpl implements TimeTableService {
     }
 
     @Override
+    public Integer getStationBetween(Station firstStation, Station secondStation) {
+        return null;
+    }
+
+    @Override
     public TimeTable getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("TimeTable is not found with identity: " + id));
