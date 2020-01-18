@@ -30,7 +30,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     @Override
     public List<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId, String date) {
-        return repository.findByDepartureStAndArrivalStAddDate(arrivalStationId, departureStationId, DateManager.parseDate(date));
+        return repository.findByDepartureStAndArrivalStAddDate(departureStationId, arrivalStationId, DateManager.parseDate(date));
     }
 
     @Override

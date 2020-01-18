@@ -39,9 +39,6 @@ public class Ticket extends BaseEntity {
     @JoinColumn(name = "station_of_arrival_id", nullable = false)
     private Station stationArrival;
 
-    @Column(name = "cost", nullable = false)
-    private String cost;
-
     @ManyToOne
     @JoinColumn(name = "place_id", nullable = false)
     private Place place;

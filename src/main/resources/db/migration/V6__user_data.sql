@@ -163,146 +163,146 @@ INSERT INTO rwm_storage.waggon(bought, number, waggon_type, train_id)
 VALUES (false, 2, 'COMMON', (SELECT t.id FROM rwm_storage.train t WHERE t.number = 706));
 
 --PLACE
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false,
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, '12,75','ORDINARY_SEAT', false,
         (SELECT w.id
          FROM rwm_storage.waggon w
                   INNER JOIN rwm_storage.train t ON w.train_id = t.id
          WHERE t.number = 701
            AND w.number = 1));
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 701
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 701
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 701
                                          AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT','12,75', false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 702
                                              AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 702
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 702
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 702
                                          AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT','12,75', false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 703
                                              AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 703
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 703
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 703
                                          AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 704
                                              AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 704
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT','12,75', false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 704
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 704
                                          AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 705
                                              AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 705
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT', '12,75',false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 705
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 705
                                          AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT','12,75', false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 706
                                              AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT','12,75', false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 706
                                          AND w.number = 1));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 1, 'ORDINARY_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 1, 'ORDINARY_SEAT','12,75', false, (SELECT w.id
                                            FROM rwm_storage.waggon w
                                                     INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                            WHERE t.number = 706
                                              AND w.number = 2));
-INSERT INTO rwm_storage.place(bought, number, place_type, reserved, waggon_id)
-VALUES (false, 2, 'SIDE_SEAT', false, (SELECT w.id
+INSERT INTO rwm_storage.place(bought, number, cost, place_type, reserved, waggon_id)
+VALUES (false, 2, 'SIDE_SEAT', '12,75',false, (SELECT w.id
                                        FROM rwm_storage.waggon w
                                                 INNER JOIN rwm_storage.train t ON w.train_id = t.id
                                        WHERE t.number = 706

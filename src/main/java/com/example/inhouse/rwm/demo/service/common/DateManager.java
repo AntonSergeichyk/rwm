@@ -16,7 +16,7 @@ public final class DateManager {
         try {
             return LocalDate.parse(date, DATE_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new DateParseException(date + " could not be parsed; expected format: d/MM/yyyy");
+            throw new DateParseException(date + " could not be parsed; expected format: d-MM-yyyy");
         }
     }
 

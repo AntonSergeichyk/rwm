@@ -20,6 +20,8 @@ public class FullTimeTableDto {
     private String trainName;
     private LocalDateTime departureTime;
     private String departureStationName;
+    private Long departureStationId;
     private LocalDateTime arrivalTime;
     private String arrivalStationName;
+    private Long arrivalStationId;
 }

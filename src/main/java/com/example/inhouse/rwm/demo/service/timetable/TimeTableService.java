@@ -7,6 +7,7 @@ import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import org.springframework.data.domain.Page;
 
 import javax.naming.OperationNotSupportedException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface TimeTableService {

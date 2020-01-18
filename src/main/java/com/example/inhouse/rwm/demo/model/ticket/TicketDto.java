@@ -23,7 +23,6 @@ public class TicketDto {
     private LocalDateTime dateOfArrival;
     private Station stationLeave;
     private Station stationArrival;
-    private String cost;
     private PlaceDto place;
 
     public TicketDto(Ticket ticket) {
@@ -35,7 +34,6 @@ public class TicketDto {
         this.dateOfArrival = ticket.getDateOfArrival();
         this.stationLeave = ticket.getStationLeave();
         this.stationArrival = ticket.getStationArrival();
-        this.cost = ticket.getCost();
         this.place = new PlaceDto(ticket.getPlace());
 
     }
