@@ -1,7 +1,7 @@
 --TICKET
-INSERT INTO rwm_storage.ticket(cost, date_of_arrival, date_of_leave, place_id, station_of_leave_id,
+INSERT INTO rwm_storage.ticket(date_of_arrival, date_of_leave, place_id, station_of_leave_id,
                                station_of_arrival_id)
-VALUES ('12,75', (SELECT tt.arrival_time
+VALUES ( (SELECT tt.arrival_time
                   FROM rwm_storage.timetable tt
                            INNER JOIN rwm_storage.train t ON t.id = tt.train_id
                            INNER JOIN rwm_storage.station s ON tt.station_id = s.id

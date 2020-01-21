@@ -35,7 +35,6 @@ public class TicketServiceImpl implements TicketService {
         Place place = placeService.getById(request.getPlaceId());
 
         Ticket ticket = new Ticket();
-        ticket.setCost(request.getCost());
         ticket.setDateOfLeave(DateManager.parseDateTime(request.getDateOfLeave()));
         ticket.setDateOfArrival(DateManager.parseDateTime(request.getDateOfArrival()));
         ticket.setStationLeave(leaveStation);

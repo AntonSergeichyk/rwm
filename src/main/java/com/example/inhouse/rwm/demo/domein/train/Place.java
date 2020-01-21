@@ -29,6 +29,9 @@ public class Place extends BaseEntity {
     @Column(name = "number", nullable = false)
     private Integer number;
 
+    @Column(name = "cost", nullable = false)
+    private String cost;
+
     @Enumerated(STRING)
     @Column(name = "place_type", nullable = false)
     private PlaceType placeType;

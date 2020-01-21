@@ -17,6 +17,7 @@ public class PlaceDto {
 
     private Long id;
     private Integer number;
+    private String cost;
     private PlaceType placeType;
     private Boolean reserved;
     private Boolean bought;
@@ -29,6 +30,7 @@ public class PlaceDto {
         }
         this.id = place.getId();
         this.number = place.getNumber();
+        this.cost = place.getCost();
         this.placeType = place.getPlaceType();
         this.reserved = place.getReserved();
         this.bought = place.getBought();

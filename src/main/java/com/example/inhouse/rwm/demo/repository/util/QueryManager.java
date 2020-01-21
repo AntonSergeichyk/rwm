@@ -9,13 +9,16 @@ public final class QueryManager {
             "       sab_table_first.train_name,\n" +
             "       sab_table_first.departure_time,\n" +
             "       sab_table_first.departure_station_name,\n" +
+            "       sab_table_first.departure_station_id,\n" +
             "       sab_table_second.arrival_time,\n" +
-            "       sab_table_second.arrival_station_name\n" +
+            "       sab_table_second.arrival_station_name,\n" +
+            "       sab_table_second.arrival_station_id\n" +
             "FROM (SELECT t.id            AS train_id,\n" +
             "             t.number        AS train_number,\n" +
             "             t.name          AS train_name,\n" +
             "             tt.arrival_time AS departure_time,\n" +
-            "             s.name          AS departure_station_name\n" +
+            "             s.name          AS departure_station_name,\n" +
+            "             s.id            AS departure_station_id\n" +
             "      FROM rwm_storage.timetable tt\n" +
             "               INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
             "               INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
@@ -25,7 +28,8 @@ public final class QueryManager {
             "                            t.number        AS train_number,\n" +
             "                            t.name          AS train_name,\n" +
             "                            tt.arrival_time AS arrival_time,\n" +
-            "                            s.name          AS arrival_station_name\n" +
+            "                            s.name          AS arrival_station_name,\n" +
+            "                            s.id            AS arrival_station_id\n" +
             "                     FROM rwm_storage.timetable tt\n" +
             "                              INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
             "                              INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
@@ -54,5 +58,33 @@ public final class QueryManager {
             "                                ON sab_table_first.train_number = sab_table_second.train_number\n" +
             "            WHERE sab_table_first.departure_time < sab_table_second.arrival_time;";
 
+    public static final String COUNT_STATION_BETWEEN_TWO_STATIONS = "SELECT\n" +
+            " count(*)\n" +
+            "FROM rwm_storage.timetable tt\n" +
+            "  INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
+            "  INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
+            "WHERE t.id = :trainId\n" +
+            "      AND date(tt.arrival_time) = :date\n" +
+            "      AND tt.arrival_time BETWEEN\n" +
+            "      (SELECT tt.arrival_time\n" +
+            "       FROM rwm_storage.timetable tt\n" +
+            "         INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
+            "         INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
+            "       WHERE s.id = :station1\n" +
+            "             AND t.id = :trainId)\n" +
+            "      AND\n" +
+            "      (SELECT tt.arrival_time\n" +
+            "       FROM rwm_storage.timetable tt\n" +
+            "         INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
+            "         INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
+            "       WHERE s.id = :station2\n" +
+            "             AND t.id = :trainId);";
 
+    public static final String COUNT_ALL_STATION_ON_ROUT = "SELECT\n" +
+            " count(*)\n" +
+            "FROM rwm_storage.timetable tt\n" +
+            "  INNER JOIN rwm_storage.train t ON tt.train_id = t.id\n" +
+            "  INNER JOIN rwm_storage.station s ON tt.station_id = s.id\n" +
+            "WHERE t.id = trainId\n" +
+            "      AND date(tt.arrival_time) = :date;";
 }

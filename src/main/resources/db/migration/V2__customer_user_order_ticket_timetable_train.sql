@@ -116,6 +116,7 @@ CREATE TABLE rwm_storage.place
     created_by BIGINT                      NULL,
     bought     BOOLEAN                     NULL NULL,
     number     INTEGER                     NULL NULL,
+    cost       VARCHAR(255)                NOT NULL,
     place_type VARCHAR(255)                NULL NULL,
     reserved   BOOLEAN                     NULL NULL,
     waggon_id  BIGINT                      NULL NULL REFERENCES rwm_storage.waggon (id)
@@ -128,7 +129,6 @@ CREATE TABLE rwm_storage.ticket
     changed_by      BIGINT                      NULL,
     created_at      TIMESTAMP WITHOUT TIME ZONE NULL NULL,
     created_by      BIGINT                      NULL,
-    cost            VARCHAR(255)                NOT NULL,
     date_of_arrival TIMESTAMP                   NOT NULL,
     date_of_leave   TIMESTAMP                   NOT NULL,
     place_id        BIGINT                      NOT NULL REFERENCES rwm_storage.place (id)
