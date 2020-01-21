@@ -1,11 +1,12 @@
 package com.example.inhouse.rwm.demo.service.ticket;
 
 import com.example.inhouse.rwm.demo.domein.ticket.Ticket;
-import com.example.inhouse.rwm.demo.model.ticket.AddOrUpdateTicketRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 public interface TicketService {
 
     Ticket getById(Long ticketId);
 
-    Ticket add(AddOrUpdateTicketRequest request);
+    Ticket add(HttpServletRequest request);
 }

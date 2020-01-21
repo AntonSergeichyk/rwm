@@ -23,6 +23,6 @@ public interface StationRepository extends BaseRepository<Station> {
                                  @Param("station2") Long stationSecondId);
 
     @Query(nativeQuery = true, value = COUNT_ALL_STATION_ON_ROUT)
-    Integer countAllStationOnRout(@Param("trainId") Long trainId,
+    Integer countAllStationOnTrip(@Param("trainId") Long trainId,
                                   @Param("date") LocalDate date);
 }

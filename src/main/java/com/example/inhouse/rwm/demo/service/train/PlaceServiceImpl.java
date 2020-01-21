@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -34,11 +35,9 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<Place> getByWaggonIdWithCost(Long waggonId, Boolean bought) {
+    public List<Place> getByWaggonIdWithCost(Long waggonId, Boolean bought, HttpServletRequest request) {
         List<Place> places = repository.getByWaggonIdAndBought(waggonId, bought);
-        String cost = costCalculationService.calculate(waggonId);
-        places.forEach(it -> it.setCost(cost));
-        return places;
+        return costCalculationService.cost(places, request);
     }
 
     @Override

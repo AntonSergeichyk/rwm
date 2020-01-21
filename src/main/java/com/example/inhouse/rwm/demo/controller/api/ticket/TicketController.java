@@ -6,6 +6,8 @@ import com.example.inhouse.rwm.demo.service.ticket.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/ticket")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public TicketDto add(@RequestBody AddOrUpdateTicketRequest request) {
+    public TicketDto add(HttpServletRequest request) {
         return new TicketDto(service.add(request));
     }
 }

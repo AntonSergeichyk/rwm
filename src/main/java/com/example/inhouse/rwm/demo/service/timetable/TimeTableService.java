@@ -17,8 +17,6 @@ public interface TimeTableService {
 
     Page<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId, String date, PageRequest pageRequest) throws OperationNotSupportedException;
 
-    Integer getStationBetween(Station firstStation, Station secondStation);
-
     TimeTable getById(Long id);
 
     TimeTable add(AddOrUpdateTimeTableRequest request);

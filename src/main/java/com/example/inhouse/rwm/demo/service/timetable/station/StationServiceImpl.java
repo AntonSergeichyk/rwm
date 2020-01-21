@@ -1,4 +1,4 @@
-package com.example.inhouse.rwm.demo.service.station;
+package com.example.inhouse.rwm.demo.service.timetable.station;
 
 import com.example.inhouse.rwm.demo.common.exception.NotFoundException;
 import com.example.inhouse.rwm.demo.domein.timetable.Station;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -52,5 +53,15 @@ public class StationServiceImpl implements StationService {
         Station station = getById(id);
         station.setName(request.getName());
         return station;
+    }
+
+    @Override
+    public Integer countBetweenStations(Long trainId, LocalDate date, Long stationFirstId, Long stationSecondId) {
+        return repository.countBetweenStations(trainId, date, stationFirstId, stationSecondId);
+    }
+
+    @Override
+    public Integer countAllStationOnTrip(Long trainId, LocalDate date) {
+        return repository.countAllStationOnTrip(trainId, date);
     }
 }

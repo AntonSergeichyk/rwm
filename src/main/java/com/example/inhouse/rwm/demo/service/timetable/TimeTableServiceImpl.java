@@ -9,7 +9,7 @@ import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateTimeTableRequest;
 import com.example.inhouse.rwm.demo.model.timetable.FullTimeTableDto;
 import com.example.inhouse.rwm.demo.repository.timetable.TimeTableRepository;
 import com.example.inhouse.rwm.demo.service.common.DateManager;
-import com.example.inhouse.rwm.demo.service.station.StationService;
+import com.example.inhouse.rwm.demo.service.timetable.station.StationService;
 import com.example.inhouse.rwm.demo.service.train.TrainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,11 +37,6 @@ public class TimeTableServiceImpl implements TimeTableService {
     public Page<FullTimeTableDto> getByStationsAndDate(Long departureStationId, Long arrivalStationId,
                                                        String date, PageRequest pageRequest) throws OperationNotSupportedException {
         throw new OperationNotSupportedException("pagination not supported");
-    }
-
-    @Override
-    public Integer getStationBetween(Station firstStation, Station secondStation) {
-        return null;
     }
 
     @Override

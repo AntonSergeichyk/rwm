@@ -5,7 +5,7 @@ import com.example.inhouse.rwm.demo.model.PageRequest;
 import com.example.inhouse.rwm.demo.model.PageResponse;
 import com.example.inhouse.rwm.demo.model.timetable.AddOrUpdateStationRequest;
 import com.example.inhouse.rwm.demo.model.timetable.StationDto;
-import com.example.inhouse.rwm.demo.service.station.StationService;
+import com.example.inhouse.rwm.demo.service.timetable.station.StationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;

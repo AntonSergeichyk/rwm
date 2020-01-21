@@ -11,6 +11,5 @@ public class AddOrUpdateTicketRequest {
     private Long stationLeaveId;
     private String dateOfArrival;
     private Long stationArrivalId;
-    private String cost;
     private Long placeId;
 }

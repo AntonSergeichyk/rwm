@@ -5,6 +5,7 @@ import com.example.inhouse.rwm.demo.service.train.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +30,10 @@ public class PlaceController {
     }
 
     @GetMapping("/{waggonId}/free/waggon/cost")
-    public List<PlaceDto> getByWaggonIdWithCost(@PathVariable Long waggonId,
-                                        @RequestParam Boolean bought) {
-        return service.getByWaggonId(waggonId, bought).stream()
+    public List<PlaceDto> getByWaggonIdWithCost(HttpServletRequest request,
+                                                @PathVariable Long waggonId,
+                                                @RequestParam Boolean bought) {
+        return service.getByWaggonIdWithCost(waggonId, bought, request).stream()
                 .map(PlaceDto::new)
                 .collect(Collectors.toList());
     }

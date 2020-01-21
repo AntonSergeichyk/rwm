@@ -27,4 +27,8 @@ public final class DateManager {
             throw new DateParseException(dateTime + " could not be parsed; expected format: d-MM-yyyy HH:mm:ss");
         }
     }
+
+    public static LocalDate getDate(LocalDateTime dateTime){
+        return dateTime.toLocalDate();
+    }
 }
